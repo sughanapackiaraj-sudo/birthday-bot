@@ -1,0 +1,33 @@
+# Sensitive files - DO NOT COMMIT TO GITHUB
+# These files contain your bot token and Google credentials
+*.json
+!requirements.json
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

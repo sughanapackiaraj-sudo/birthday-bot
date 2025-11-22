@@ -1,0 +1,47 @@
+name: Birthday Bot Daily Check
+
+# When to run this workflow
+on:
+  schedule:
+    # Runs every day at 9:00 AM IST (3:30 AM UTC)
+    - cron: '30 3 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# What to do when the workflow runs
+jobs:
+  check-and-send:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get the code from your repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Step 3: Install required Python packages
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Create config.json from GitHub Secret
+      - name: Create config file
+        run: |
+          echo '${{ secrets.CONFIG_JSON }}' > config.json
+
+      # Step 5: Create Google credentials file from GitHub Secret
+      - name: Create Google credentials
+        run: |
+          echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
+
+      # Step 6: Run the birthday bot
+      - name: Run Celebration Bot
+        run: |
+          python birthdaybot.py
