@@ -11,8 +11,23 @@ Automated Telegram bot that posts beautiful celebration posters for birthdays, a
 - Flexible date format (DD/MM or DD/MM/YYYY)
 - Reads member data from Google Sheets
 - Free automated daily execution via GitHub Actions
+- No coding required - everything is configured through settings!
 
-## Setup Guide
+## Quick Start (5 Minutes!)
+
+Want to use this bot for your organization? Here's what you'll do:
+
+1. **Fork this repository** (creates your own copy)
+2. **Create a Telegram bot** (via @BotFather) - Get your bot token
+3. **Create a Google Sheet** with your members' data (names, photos, event dates)
+4. **Create Google Cloud credentials** (service account) - Get the JSON file
+5. **Configure your settings** in a `config.json` file (add YOUR club name, YOUR colors, YOUR bot token, etc.)
+6. **Add secrets to GitHub** (paste your config.json and Google credentials as encrypted secrets)
+7. **Enable GitHub Actions** - Your bot runs automatically every day at 9 AM!
+
+**Each organization gets their own completely independent bot with their own branding, colors, and members!**
+
+## Detailed Setup Guide
 
 ### Step 1: Create a Telegram Bot
 
@@ -82,7 +97,7 @@ Automated Telegram bot that posts beautiful celebration posters for birthdays, a
 
 ### Step 7: Create Your config.json
 
-Create a file called `config.json` with this structure (customize the values):
+Create a file called `config.json` with this structure. **This is where you customize everything for YOUR organization:**
 
 ```json
 {
@@ -98,21 +113,21 @@ Create a file called `config.json` with this structure (customize the values):
   },
 
   "customization": {
-    "club_name": "Your Club Name Here",
+    "club_name": "Your Club Name Here",  ← CHANGE THIS to your organization name!
     "send_to_group": true,
     "send_personal_messages": true
   },
 
   "poster_design": {
-    "background_color": [255, 228, 196],
-    "text_color": [80, 40, 100],
+    "background_color": [255, 228, 196],  ← CHANGE THESE to your preferred colors!
+    "text_color": [80, 40, 100],          ← RGB format: [Red, Green, Blue]
     "poster_width": 400,
     "poster_height": 300,
     "photo_size": 180
   },
 
   "event_message_templates": {
-    "personal": "🎉 Happy {event_name}, {name}! Wishing you all the best! 💫",
+    "personal": "🎉 Happy {event_name}, {name}! Wishing you all the best! 💫",  ← Customize messages!
     "group": "🎉 It's {name}'s {event_name} today! 🎊"
   },
 
@@ -122,11 +137,16 @@ Create a file called `config.json` with this structure (customize the values):
 }
 ```
 
-**Important notes:**
-- Replace `YOUR_BOT_TOKEN_HERE` with your Telegram bot token
-- Replace `-YOUR_GROUP_CHAT_ID_HERE` with your group chat ID (must be negative)
-- Replace `YOUR_GOOGLE_SHEET_URL_HERE` with your Google Sheet URL
-- Keep `"service_account_file": "credentials.json"` as is (GitHub Actions will handle this)
+**Important - Replace These Values:**
+- `YOUR_BOT_TOKEN_HERE` → Your Telegram bot token from @BotFather
+- `-YOUR_GROUP_CHAT_ID_HERE` → Your group chat ID (must be negative, e.g., -1234567890)
+- `YOUR_GOOGLE_SHEET_URL_HERE` → Your Google Sheet URL
+- `"Your Club Name Here"` → **YOUR organization name** (e.g., "Mumbai Toastmasters", "Tech Team", etc.)
+- `background_color` and `text_color` → **YOUR preferred colors** (RGB format)
+- Message templates → **YOUR custom messages**
+
+**Keep This As-Is:**
+- `"service_account_file": "credentials.json"` (GitHub Actions handles this automatically)
 
 ### Step 8: Enable GitHub Actions
 
