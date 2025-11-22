@@ -1,4 +1,4 @@
-# Celebration Bot
+# Birthday Bot
 
 Automated Telegram bot that posts beautiful celebration posters for birthdays, anniversaries, work milestones, and any custom events. Runs daily on GitHub Actions - completely free!
 
@@ -137,7 +137,7 @@ Create a file called `config.json` with this structure (customize the values):
 ### Step 9: Test Manually (Optional)
 
 1. Go to **Actions** tab
-2. Click **Celebration Bot Daily Check**
+2. Click **Birthday Bot Daily Check**
 3. Click **Run workflow** → **Run workflow**
 4. Wait a few seconds and check your Telegram group!
 
