@@ -34,14 +34,18 @@ jobs:
       # Step 4: Create config.json from GitHub Secret
       - name: Create config file
         run: |
-          echo '${{ secrets.CONFIG_JSON }}' > config.json
+          cat << 'EOF' > config.json
+          ${{ secrets.CONFIG_JSON }}
+          EOF
 
       # Step 5: Create Google credentials file from GitHub Secret
       - name: Create Google credentials
         run: |
-          echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
+          cat << 'EOF' > credentials.json
+          ${{ secrets.GOOGLE_CREDENTIALS }}
+          EOF
 
       # Step 6: Run the birthday bot
-      - name: Run Celebration Bot
+      - name: Run Birthday Bot
         run: |
           python birthdaybot.py
